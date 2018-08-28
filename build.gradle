@@ -1,0 +1,44 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.flywaydb:flyway-gradle-plugin:4.0.3")
+    }
+}
+apply plugin: 'org.flywaydb.flyway'
+
+//plugins {
+//    id "org.flywaydb.flyway" version "4.0.3"
+//}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter')
+    runtime('mysql:mysql-connector-java')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+flyway {
+    url = 'jdbc:mysql://127.0.0.1:3306/flyway'
+    user = 'root'
+    password ='pass'
+}
+//project.ext['flyway.url'] = 'jdbc:mysql://127.0.0.1:3306/flyway'
+//project.ext['flyway.user'] = 'root'
+//project.ext['flyway.password'] = 'pass'

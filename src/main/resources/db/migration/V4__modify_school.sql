@@ -1,0 +1,1 @@
+alter table school add classId int(11) not Null;
